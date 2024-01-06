@@ -1,15 +1,23 @@
 let counterCont = document.getElementById('counter');
 let counter = 0;//new count
-let interval = null;
-let windStatus = "stopped";
-
+let form =document.getElementById('comment-form')
+let input=document.getElementById('comment-input')
+let submit=document.getElementById('submit')
+let interval;
+let windStatus = "started"; //defines the status of the counter
 function windowCount() {
-    counter++;
-    counterCont.innerText = counter; //set the new count
+    
+    if(windStatus==="started"){ //set the condition of the window
+         counter++;
+      counterCont.innerText = counter; 
+    }
+   
+      
+    
 }
 
 // Set interval initially
-window.setInterval(windowCount, 1000);
+interval=window.setInterval(windowCount, 1000);
 
 let minCount = document.getElementById('minus');
 let addCount = document.getElementById('plus');
@@ -26,14 +34,28 @@ addCount.addEventListener('click', () => {
 });
 
 pauseBtn.addEventListener('click', () => {
-    if (windStatus === "stopped") {
-        interval = window.setInterval(windowCount, 1000);
-        pauseBtn.innerHTML = "pause";
-        windStatus = "started";
-    } else {
-        window.clearInterval(interval);
-        pauseBtn.innerHTML = "resume";
-        windStatus = "stopped";
+    if(windStatus==="stopped"){
+        interval=window.setInterval(windowCount, 1000);
+        pauseBtn.innerHTML="pause"
+        windStatus="started";
+        console.log('windStatus:', windStatus);
+        minCount.disabled=false;
+addCount.disabled=false;
+liker.disabled=false;
+form.ariaDisabled=false;   //enable the buttons
+input.disabled=false;
+submit.disabled=false;
+        }else{
+window.clearInterval(interval)
+pauseBtn.innerHTML="resume";
+windStatus="stopped"
+minCount.disabled=true
+addCount.disabled=true;
+liker.disabled=true;       // disable the buttons
+form.ariaDisabled=true;
+input.disabled=true;
+submit.disabled=true;
+console.log('windStatus:', windStatus);
     }
 });
 
@@ -52,7 +74,7 @@ likeCont.appendChild(list)
 })
 
 //comments function
-let form =document.getElementById('comment-form')
+
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
