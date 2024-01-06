@@ -42,8 +42,7 @@ pauseBtn.addEventListener('click', () => {
         minCount.disabled=false;
 addCount.disabled=false;
 liker.disabled=false;
-form.ariaDisabled=false;   //enable the buttons
-input.disabled=false;
+input.disabled=false;  //enable btns
 submit.disabled=false;
         }else{
 window.clearInterval(interval)
