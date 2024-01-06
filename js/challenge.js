@@ -52,7 +52,6 @@ windStatus="stopped"
 minCount.disabled=true
 addCount.disabled=true;
 liker.disabled=true;       // disable the buttons
-form.ariaDisabled=true;
 input.disabled=true;
 submit.disabled=true;
 console.log('windStatus:', windStatus);
